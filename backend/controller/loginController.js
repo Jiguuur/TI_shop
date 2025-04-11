@@ -1,9 +1,9 @@
-import { Users } from "../models/loginModel.js";
+import Employ from "../models/employModel.js";
 import asyncHandler from "../middleware/asyncHandler.js";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export const getInfo = asyncHandler(async (req, res) => {
-  const users = await Users.find();
+  const users = await Employ.find();
 
   if (users.length > 0) {
     res.json(users);
@@ -21,10 +21,12 @@ export const login = asyncHandler(async (req, res) => {
     throw new Error("Please provide both email and password");
   }
 
-  const user = await Users.findOne({ email });
+  const user = await Employ.findOne({ email });
 
-  if (user && user.password === password) {
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  if (user && (await user.matchPassword(password))) {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
     res.json({
       _id: user._id,
       email: user.email,

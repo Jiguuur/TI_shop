@@ -17,12 +17,12 @@ export const UpdateService = ({
     if (open) {
       formRef.current?.setFieldsValue({
         ...detail,
-        first_name: detail?.first_name ?? undefined,
-        last_name: detail?.last_name,
+        first_name: detail?.firstName ?? undefined,
+        last_name: detail?.lastName,
         registration_number: detail?.registration_number,
         gender: detail?.gender ?? undefined,
         email: detail?.email ?? undefined,
-        phone: detail?.phone,
+        phone: detail?.phoneNumber,
         role_name: detail?.role_name,
         role_id: detail?.role_id,
         password: detail?.password,

@@ -1,4 +1,4 @@
-import { QuestionCircleOutlined } from "@ant-design/icons";
+import { QuestionCircleOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Form, Input, InputNumber, Switch, Tooltip, Typography } from "antd";
 import { Rule } from "antd/lib/form";
 import { ValidateStatus } from "antd/lib/form/FormItem";

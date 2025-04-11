@@ -20,7 +20,7 @@ jobs:
           password: muunuu123456
 
       - name: Build the Docker image
-        run: docker build --platform linux/amd64 --build-arg VITE_PASSPHASE=teso@20223 --build-arg VITE_API_URL=http://103.50.205.131:8080/api/v1 --build-arg VITE_FILE_GET_URL=http://103.50.205.131:9000/ --tag moonnse/logistic_front:latest .
+        run: docker build --platform linux/amd64 --build-arg VITE_PASSPHASE=teso@20223 --build-arg VITE_API_URL=http://localhost:4000 --build-arg VITE_FILE_GET_URL=http://localhost:4000 --tag moonnse/logistic_front:latest .
 
       - name: Push the Docker image
         run: docker push moonnse/logistic_front:latest

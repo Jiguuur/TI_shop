@@ -17,10 +17,10 @@ const CustomerCompany = () => {
   const [filter, setFilter] = useState(initPagination);
   const [create, setCreate] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
-
+  const [view, setView] = useState<CustomerCompanyType>();
   const [changePass, setChangePass] = useState<CustomerCompanyType>();
 
-  const list = useRequest(customerCompany.list, {
+  const list = useRequest<any, [Record<string, any>]>(customerCompany.list, {
     manual: true,
     onError: (err) =>
       notification.error({
@@ -96,7 +96,7 @@ const CustomerCompany = () => {
             width: "200",
             render: (value) => (
               <span className="text-sm text-[#475467] font-normal flex text-center ">
-                {<Switch disabled checked={value === "Тийм"} />}
+                {<Switch disabled checked={value === "yes"} />}
               </span>
             ),
           },

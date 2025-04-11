@@ -73,10 +73,10 @@ export const Info: React.FC<PropsInfo> = ({ action }) => {
         </Col>
         <Col span={12}>
           <ProFormDigit
-            name={"age"}
+            name={"password"}
             rules={FORM_ITEM_RULE()}
-            label="Нас"
-            placeholder={"Нас"}
+            label="Нууц үг"
+            placeholder={"Нууц үг"}
           />
         </Col>
       </Row>
@@ -110,7 +110,7 @@ export const Info: React.FC<PropsInfo> = ({ action }) => {
         {action === "create" && (
           <Col span={12}>
             <ProFormText.Password
-              // rules={FORM_ITEM_RULE()}
+              rules={FORM_ITEM_RULE()}
               name={"password"}
               placeholder={"Нууц үг"}
               label="Нууц үг"

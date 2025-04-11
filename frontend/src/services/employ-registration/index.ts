@@ -2,26 +2,36 @@ import { Admin } from "service/auth/type";
 import { PaginationResponse, SuccessResponse } from "types";
 import http from "..";
 
-
-
 namespace workers {
   export const list = async () => {
-    const response = await fetch("http://localhost:4000/employ/list", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/employ/list`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch workers list: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch workers list: ${response.status} ${response.statusText}`
+      );
     }
 
     const dataResponse = await response.json();
 
     // Validate the response structure for login
-    if (!dataResponse || (!dataResponse.success && !Array.isArray(dataResponse))) {
-      throw new Error(`Invalid login response: Expected a success flag or an array of workers. Received: ${JSON.stringify(dataResponse)}`);
+    if (
+      !dataResponse ||
+      (!dataResponse.success && !Array.isArray(dataResponse))
+    ) {
+      throw new Error(
+        `Invalid login response: Expected a success flag or an array of workers. Received: ${JSON.stringify(
+          dataResponse
+        )}`
+      );
     }
 
     // If dataResponse is an array, return it directly

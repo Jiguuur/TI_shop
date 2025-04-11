@@ -21,7 +21,7 @@ const Workers = () => {
   const [search, setSearch] = useState<string>("");
 
   const [changePass, setChangePass] = useState<Admin>();
-  const list = useRequest(employRegistration.list, {
+  const list = useRequest<any, [Record<string, any>]>(employRegistration.list, {
     manual: true,
     onError: (err) =>
       notification.error({
@@ -73,6 +73,7 @@ const Workers = () => {
             dataIndex: "lastName",
             title: "Овог",
             align: "left",
+            width: "10%",
             render: (value) => (
               <div className="flex gap-2">
                 <span className="text-sm text-[#475467] font-normal">
@@ -85,6 +86,7 @@ const Workers = () => {
             dataIndex: "firstName",
             title: "Нэр",
             align: "left",
+            width: "10%",
             render: (value) => (
               <span className="text-sm text-[#475467] font-normal flex text-center">
                 {value || "-"}
@@ -95,9 +97,10 @@ const Workers = () => {
             dataIndex: "gender",
             title: "Хүйс",
             align: "center",
+            width: "15%",
             render: (value) => (
               <span className="text-sm text-[#475467] font-normal">
-                {value === "Эр" ? "Эрэгтэй" : "Эмэгтэй"}
+                {value === "Male" ? "Эрэгтэй" : "Эмэгтэй"}
               </span>
             ),
           },
@@ -105,7 +108,7 @@ const Workers = () => {
             dataIndex: "email",
             title: "Цахим хаяг",
             align: "left",
-            width: "10%",
+            width: "15%",
             render: (value) => (
               <span className="text-sm text-[#475467] font-normal flex text-center ">
                 {value || "-"}
@@ -115,6 +118,8 @@ const Workers = () => {
           {
             dataIndex: "phoneNumber",
             title: "Утасны дугаар",
+            align: "left",
+            width: "15%",
             render: (value) => (
               <span className="text-sm text-[#475467] font-normal flex text-center">
                 {value || "-"}
@@ -122,7 +127,7 @@ const Workers = () => {
             ),
           },
           {
-            dataIndex: "position",
+            dataIndex: "role_name",
             title: "Албан тушаал",
             render: (value) => {
               return value ? <UserBadge status={value.toString()} /> : "-";
@@ -148,7 +153,7 @@ const Workers = () => {
           action: employRegistration.deleteEmploy,
           config: (record) => ({
             uniqueKey: record?.id,
-            display: record?.firstName,
+            display: record?.first_name,
             title: "Remove",
           }),
         }}

@@ -31,9 +31,12 @@ const Login: FC = () => {
   const login = useRequest(auth.login, {
     manual: true,
     onSuccess: (data) => {
+      console.log("Login success callback triggered with:", data);
       if (data && data.token && data.role_name) {
+        console.log("Saving token and attempting navigation for role:", data.role_name);
         auth.saveToken(data.token);
         setAuth([Action.SIGN_IN, data]);
+        console.log("About to navigate based on role:", data.role_name);
         if (data.role_name === UserRoleType.transport_manager) {
           navigate(menuManagerItems[0].path);
         } else if (data.role_name === UserRoleType.cashier) {

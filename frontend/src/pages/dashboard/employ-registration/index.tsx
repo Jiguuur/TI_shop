@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import CustomerCompany from "./customer";
 import Workers from "./employes";
+import { Form } from "antd";
 
 const EmployeRegistration = () => {
   const [tab, setTab] = useState<any>(registerCustomerEnumTab.Worker);
@@ -44,15 +45,17 @@ const EmployeRegistration = () => {
           initialValue={FininciarTab.CustomerCompany}
         />
       </div>
-      <IfCondition
-        condition={tab === registerCustomerEnumTab.Worker}
-        whenTrue={<Workers />}
-      />
+      <Form>
+        <IfCondition
+          condition={tab === registerCustomerEnumTab.Worker}
+          whenTrue={<Workers />}
+        />
 
-      <IfCondition
-        condition={tab === registerCustomerEnumTab.CustomerCompany}
-        whenTrue={<CustomerCompany />}
-      />
+        <IfCondition
+          condition={tab === registerCustomerEnumTab.CustomerCompany}
+          whenTrue={<CustomerCompany />}
+        />
+      </Form>
     </>
   );
 };
