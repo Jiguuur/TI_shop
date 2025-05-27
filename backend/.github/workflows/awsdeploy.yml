@@ -20,7 +20,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: [self-hosted, aws-ec2-backend]
     steps:
       - name: Pull image from Docker Hub
         run: docker pull jiguuur/ti_shop_backend:latest
